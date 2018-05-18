@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>轮播效果</title>
+  <style>  
+	*{margin:0;padding:0;}
+	body{background:#ffffff;}
+	#banner{
+		position:relative;
+	    width:800px;
+		height:400px;
+		margin:30px auto;
+		border:1px solid #c0c0c0;
+		border-radius:20px;
+		box-shadow:0 0 5px #808080;
+	}
+	ul{	
+		width:800px;
+		height:400px;
+	}
+	li	{list-style:none;transition:0.2s;}
+	img	{width:100%;height:100%;}
+
+	li:nth-child(1){
+		position:absolute;
+		left:265px;
+		top:0;
+		width:270px;
+		height:400px;
+	}
+	li:nth-child(2){
+		position:absolute;
+		left:510px;
+		top:65px;
+		width:200px;
+		height:270px;
+	}
+	li:nth-child(3){
+		position:absolute;
+		left:700px;
+		top:133px;
+		width:100px;
+		height:135px;
+	}
+	li:nth-child(4){
+		position:absolute;
+		left:350px;
+		top:133px;
+		width:90px;
+		height:135px;
+	}
+	li:nth-child(5){
+		position:absolute;
+		left:350px;
+		top:133px;
+		width:90px;
+		height:135px;
+	}
+	li:nth-child(6){
+		position:absolute;
+		left:350px;
+		top:133px;
+		width:90px;
+		height:135px;
+	}	
+	li:nth-child(7){
+		position:absolute;
+		left:0px;
+		top:133px;
+		width:100px;
+		height:135px;
+	}	
+	li:nth-child(8){
+		position:absolute;
+		left:90px;
+		top:65px;
+		width:200px;
+		height:270px;
+	}
+
+	a{	
+		font-size:40px;
+		text-decoration:none;
+		color:#ff3366;
+		cursor:pointer;
+		background:rgba(0,0,0,0.4);
+	}
+	#to-left	{	position:absolute;top:180px;	}
+	#to-right	{	position:absolute;top:180px;left:770px;	}
+	div button{
+	  position:absolute;
+	  right:10%;
+	  width:10%;
+	  border-color:#ff0;
+	  background:#ff0;
+	}
+	div button a{
+	  width:10%;
+	  heigth:20px;
+	  text-decoration:none;
+	  font-size:20px;
+	  background:#ff0;
+	}    
+    h5{
+	  text-align:center;
+	}
+  </style>
+ </head>
+ <body>
+	<div id="banner" >
+		<ul>
+			<li style="z-index: 0;">	<img src="images/1.jpg"/></li>
+			<li style="z-index:-1;">	<img src="images/2.jpg"/></li>
+			<li style="z-index:-2;">	<img src="images/3.jpg"/></li>
+			<li style="z-index:-3;">	<img src="images/4.jpg"/></li>
+			<li style="z-index:-3;">	<img src="images/5.jpg"/></li>
+			<li style="z-index:-3;">	<img src="images/6.jpg"/></li>
+			<li style="z-index:-2;">	<img src="images/7.jpg"/></li>
+			<li style="z-index:-1;">	<img src="images/8.jpg"/></li>   
+		</ul> 
+		<a id="to-left" onclick="banner(0)">&lt</a>
+		<a id="to-right" onclick="banner(1)">&gt</a> 
+	</div>
+	<div>
+		<button><a href="../index.html">返回首页</a></button>
+	</div>
+<script>
+function banner(direction){
+	var mleft=Array();mtop=Array(); mindex=Array();
+	var mwidth=Array();mheight=Array();
+	var	obj=document.getElementsByTagName('li');
+
+	for(var i=0;i<8;i++)
+	{	
+	 	mwidth[i]=obj[i].offsetWidth;
+	 	mheight[i]=obj[i].offsetHeight;
+	 	mleft[i]=obj[i].offsetLeft;
+	 	mtop[i]=obj[i].offsetTop;
+	 	mindex[i]=obj[i].style.zIndex;
+	}	
+	var mod = 8
+	var fff = direction == 0 ?  mod - 1 : 1;
+
+	// for (var j = 0; j < mod; j++ )
+	// {	
+	// 	obj[j].style.width  =  mwidth[(  j+fff)%mod]+'px';
+	// 	obj[j].style.height =  mheight[( j+fff)%mod]+'px';
+	// 	obj[j].style.left   =  mleft[(   j+fff)%mod]+'px';
+	// 	obj[j].style.top    =  mtop[(    j+fff)%mod]+'px';
+	// 	obj[j].style.zIndex =  mindex[(  j+fff)%mod];
+	// }
+
+		for (var j=0;j<mod;j++ )
+	{	
+		obj[j].style.width  =  mwidth[(  j+fff)%mod]  + 'px';
+		obj[j].style.height =  mheight[(  j+fff)%mod] + 'px';
+		obj[j].style.left   =  mleft[(  j+fff)%mod]   + 'px';
+		obj[j].style.top    =  mtop[(  j+fff)%mod]    + 'px';
+		obj[j].style.zIndex =  mindex[(  j+fff)%mod] ;
+	}
+}
+
+</script>
+ </body>
+</html>
